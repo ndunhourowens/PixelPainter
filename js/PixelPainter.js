@@ -1,10 +1,8 @@
+/////////======div id = pixelPainter=========/////////
+
 var colorSelected = 'white';
 
-
-
-
 function oneButton(grid) {
-//one button
   var white_but = document.createElement('button');
   white_but.style.background = 'white';
   white_but.style.width = '25px';
@@ -31,33 +29,14 @@ function grid(rows, col) {
     pixelPainter.appendChild(document.createElement('br'));
     twoDimArr.push(row);
   }
-//console.log(twoDimArr[3][3]);
 }
 grid(20,20);
 
 
-// var header = document.createElement('h1');
-// document.getElementById('header').innerHTML = "Hello World";
-
-// var headerText = document.createTextNode(twoDimArr[3][2]);
-// header.appendChild(headerText);
-// document.body.appendChild(header);
-
-////========erase button===========/////
-var erase = 'white';
-
-function erase() {
-
-}
-
-////////=========setting the color picker===========/////////
-
-///=======color picker grid==========////
+///=======div id - color picker ==========////
 function colorPickerButton(grid, setColorsInPicker) {
-//one button
   var color_but = document.createElement('button');
   color_but.style.background = setColorsInPicker;
-  // color_but.style.background = 'black';
   color_but.style.width = '25px';
   color_but.style.height = '25px';
   color_but.appendChild(document.createTextNode(""));
@@ -80,8 +59,6 @@ function colorPickerGrid() {
       row.push(numbers++);
       var setColorsInPicker = color[i][j];
       colorPickerButton(colorPicker, setColorsInPicker);
-      console.log(color[i][j]);
-
     }
     colorPicker.appendChild(document.createElement('br'));
     twoDimArr.push(row);
@@ -89,4 +66,17 @@ function colorPickerGrid() {
 }
 colorPickerGrid();
 
-//////==========save the color clicked into memory==========////
+//////==========div id = control - erase button =============////
+// var remove = 'white';
+
+var erase_but = document.createElement('button');
+erase_but.style.background = "white";
+erase_but.style.width = '200px';
+erase_but.style.height = '100px';
+erase_but.appendChild(document.createTextNode('ERASE'));
+erase_but.addEventListener('click', function() {
+    colorSelected = 'white';
+  });
+
+var remove = document.getElementById('controls');
+remove.appendChild(erase_but);
