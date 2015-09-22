@@ -1,19 +1,50 @@
+h1 {
+  text-align: center;
+  font-family: Comic Sans MS;
+}
 #container {
   width: 100%;
 }
-
+/*=========================*/
 #leftCol {
   width: 30%;
   float: left;
 }
 
+
+#controls {
+  padding-top: 10px;
+}
+
+#controls button {
+  background: blue;
+  display: block;
+  width: 200px;
+  height: 50px;
+  font-family: cursive;
+  font-size: 30px;
+  background-color: red;
+
+}
+
+#colorPicker {
+  padding: 30px
+}
+/*========================*/
 #rightCol {
   width: 70%;
   float: right;
+
+}
+#pixelPainter {
+  width: auto;
 }
 
-#control {
-  float: right;
-  padding-top: 10cm;
-  border-top:  50cm;
+
+table {
+   border: 10px black solid;
+}
+td {
+  width: 30px;
+  height: 30px;
 }
