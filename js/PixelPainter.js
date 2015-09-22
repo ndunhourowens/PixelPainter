@@ -2,43 +2,47 @@
 
 var colorSelected = 'white';
 
-function oneButton(grid) {
-  var white_but = document.createElement('button');
-  white_but.style.background = 'white';
-  white_but.style.width = '25px';
-  white_but.style.height = '25px';
-  white_but.appendChild(document.createTextNode(""));
-  grid.appendChild(white_but);
-  white_but.addEventListener('click', function() {
+function cell(grid) {
+  var divCell = document.createElement('div');
+  divCell.style.border = '1px black solid';
+  divCell.style.background = 'white';
+  divCell.style.width = '25px';
+  divCell.style.height = '25px';
+  divCell.appendChild(document.createTextNode(""));
+  grid.appendChild(divCell);
+  divCell.addEventListener('click', function() {
     this.style.background = colorSelected;
   });
 }
 
 function grid(rows, col) {
   var twoDimArr = [];
-  var numbers = 0;
+  var count = 0;
+  var table = document.createElement('table');
   var pixelPainter = document.getElementById('pixelPainter');
   for(var i = 0; i < rows; i++){
-    var row = [];
+    var row = table.appendChild(document.createElement("TR"));
     for(var j = 0; j < col; j++){
-      row.push(numbers++);
-      oneButton(pixelPainter);
-
-
+      var cell = row.appendChild(document.createElement("TD"));
+      cell.setAttribute('name', 'grid');
+      cell.setAttribute('id', count++);
+      cell.addEventListener('click', function() {
+        this.style.background = colorSelected;
+      });
     }
-    pixelPainter.appendChild(document.createElement('br'));
-    twoDimArr.push(row);
+
   }
+  pixelPainter.appendChild(table);
 }
-grid(20,20);
+grid(10,10);
 
 
 ///=======div id - color picker ==========////
 function colorPickerButton(grid, setColorsInPicker) {
   var color_but = document.createElement('button');
   color_but.style.background = setColorsInPicker;
-  color_but.style.width = '25px';
-  color_but.style.height = '25px';
+  color_but.style.width = '70px';
+  color_but.style.height = '70px';
   color_but.appendChild(document.createTextNode(""));
   grid.appendChild(color_but);
   color_but.addEventListener('click', function() {
@@ -70,9 +74,7 @@ colorPickerGrid();
 // var remove = 'white';
 
 var erase_but = document.createElement('button');
-erase_but.style.background = "white";
-erase_but.style.width = '200px';
-erase_but.style.height = '100px';
+// erase_but.style.background = "white";
 erase_but.appendChild(document.createTextNode('ERASE'));
 erase_but.addEventListener('click', function() {
     colorSelected = 'white';
@@ -86,9 +88,7 @@ remove.appendChild(erase_but);
 
 
 var clear_but = document.createElement('button');
-clear_but.style.background = "white";
-clear_but.style.width = '200px';
-clear_but.style.height = '100px';
+// clear_but.style.background = "white";
 clear_but.appendChild(document.createTextNode('CLEAR'));
 clear_but.addEventListener('click', function() {
     location.reload();
@@ -96,3 +96,11 @@ clear_but.addEventListener('click', function() {
 
 var remove = document.getElementById('controls');
 remove.appendChild(clear_but);
+
+//////==========read the colors of the each button =============////
+
+//empty array that reads the color of the picture
+var savePic = [];
+
+
+//for loop to get the color of the button
