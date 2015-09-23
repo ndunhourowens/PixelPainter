@@ -1,7 +1,10 @@
 /////////======div id = pixelPainter=========/////////
 
 var colorSelected = 'white';
-
+var painted = [];
+  var twoDimArr = [];
+var i = 0;
+var j = 0;
 function cell(grid) {
   var divCell = document.createElement('div');
   divCell.style.border = '1px black solid';
@@ -10,13 +13,12 @@ function cell(grid) {
   divCell.style.height = '25px';
   divCell.appendChild(document.createTextNode(""));
   grid.appendChild(divCell);
-  divCell.addEventListener('click', function() {
-    this.style.background = colorSelected;
-  });
+  // divCell.addEventListener('click', function() {
+  //   this.style.background = colorSelected;
+  // });
 }
 
 function grid(rows, col) {
-  var twoDimArr = [];
   var count = 0;
   var table = document.createElement('table');
   var pixelPainter = document.getElementById('pixelPainter');
@@ -24,17 +26,26 @@ function grid(rows, col) {
     var row = table.appendChild(document.createElement("TR"));
     for(var j = 0; j < col; j++){
       var cell = row.appendChild(document.createElement("TD"));
+      twoDimArr.push(cell);
       cell.setAttribute('name', 'grid');
       cell.setAttribute('id', count++);
-      cell.addEventListener('click', function() {
+      cell.style.background = 'white';
+      cell.addEventListener('click', function(evt) {
         this.style.background = colorSelected;
-      });
-    }
+        painted.push(evt.target);
 
+
+      });
+      // console.log(cell.getAttribute('id'));
+      console.log('twoDim', twoDimArr);
+      console.log('painted', painted);
+    }
   }
   pixelPainter.appendChild(table);
+
+
 }
-grid(10,10);
+grid(2,2);
 
 
 ///=======div id - color picker ==========////
@@ -101,6 +112,14 @@ remove.appendChild(clear_but);
 
 //empty array that reads the color of the picture
 var savePic = [];
+// var style = twoDi;
+var save_but = document.createElement('button');
+save_but.appendChild(document.createTextNode('SAVE'));
+save_but.addEventListener('click', function() {
+    console.log(twoDimArr.row);
+    // console.log(style);
 
+});
 
-//for loop to get the color of the button
+remove.appendChild(save_but);
+
