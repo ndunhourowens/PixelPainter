@@ -2,9 +2,7 @@
 
 var colorSelected = 'white';
 var painted = [];
-  var twoDimArr = [];
-var i = 0;
-var j = 0;
+var twoDimArr = [];
 function cell(grid) {
   var divCell = document.createElement('div');
   divCell.style.border = '1px black solid';
@@ -37,8 +35,8 @@ function grid(rows, col) {
 
       });
       // console.log(cell.getAttribute('id'));
-      console.log('twoDim', twoDimArr);
-      console.log('painted', painted);
+      // console.log('twoDim', twoDimArr);
+      // console.log('painted', painted);
     }
   }
   pixelPainter.appendChild(table);
@@ -112,14 +110,29 @@ remove.appendChild(clear_but);
 
 //empty array that reads the color of the picture
 var savePic = [];
-// var style = twoDi;
 var save_but = document.createElement('button');
 save_but.appendChild(document.createTextNode('SAVE'));
 save_but.addEventListener('click', function() {
-    console.log(twoDimArr.row);
-    // console.log(style);
+  for(var u = 0; u < twoDimArr.length; u++) {
+    var cellInfo = {
+      id: twoDimArr[u].id,
+      color: twoDimArr[u].style.background
+    };
+    savePic.push(cellInfo);
 
+// console.log(savePic[u]);
+  }
+
+
+var string = JSON.stringify(savePic);
+console.log('save',savePic);
+console.log('string', string);
+var fixit = JSON.parse(string);
+console.log('parse', fixit);
+console.log('window', window.location);
+function changeHash() {
+  window.location.hash = string;
+}
 });
-
 remove.appendChild(save_but);
 
