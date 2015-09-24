@@ -109,30 +109,25 @@ remove.appendChild(clear_but);
 //////==========read the colors of the each button =============////
 
 //empty array that reads the color of the picture
-var savePic = [];
+var str = '#';
+
 var save_but = document.createElement('button');
 save_but.appendChild(document.createTextNode('SAVE'));
 save_but.addEventListener('click', function() {
   for(var u = 0; u < twoDimArr.length; u++) {
-    var cellInfo = {
-      id: twoDimArr[u].id,
-      color: twoDimArr[u].style.background
-    };
-    savePic.push(cellInfo);
-
-// console.log(savePic[u]);
+    str += twoDimArr[u].id + ':' + twoDimArr[u].style.background;
   }
+  window.location.hash = str;
 
-
-var string = JSON.stringify(savePic);
-console.log('save',savePic);
-console.log('string', string);
-var fixit = JSON.parse(string);
-console.log('parse', fixit);
-console.log('window', window.location);
-function changeHash() {
-  window.location.hash = string;
-}
 });
 remove.appendChild(save_but);
 
+//////==========load button =============////
+
+var load_but = document.createElement('button');
+load_but.appendChild(document.createTextNode('LOAD'));
+load_but.addEventListener('click', function() {
+  alert('clicked the button');
+  window.location.hash = str;
+});
+remove.appendChild(load_but);
