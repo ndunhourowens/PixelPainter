@@ -1,12 +1,28 @@
+/////////======create var to have smaller string=========/////////
+var r = 'red';
+var o = 'orange';
+var y = 'yellow';
+var g = 'green';
+var b = 'blue';
+var p = 'purple';
+var bk = 'black';
+var pk = 'pink';
+var w = 'white';
+var ch = 'chocolate';
+var sg = 'slategray';
+var sb = 'skyblue';
+var pw = 'papayawhip';
+
+
 /////////======div id = pixelPainter=========/////////
 
-var colorSelected = 'white';
+var colorSelected = w;
 var painted = [];
 var twoDimArr = [];
 function cell(grid) {
   var divCell = document.createElement('div');
   divCell.style.border = '1px black solid';
-  divCell.style.background = 'white';
+  divCell.style.background = w;
   divCell.style.width = '25px';
   divCell.style.height = '25px';
   divCell.appendChild(document.createTextNode(""));
@@ -27,7 +43,7 @@ function grid(rows, col) {
       twoDimArr.push(cell);
       cell.setAttribute('name', 'grid');
       cell.setAttribute('id', count++);
-      cell.style.background = 'white';
+      cell.style.background = w;
       cell.addEventListener('click', function(evt) {
         this.style.background = colorSelected;
         painted.push(evt.target);
@@ -43,7 +59,7 @@ function grid(rows, col) {
 
 
 }
-grid(2,2);
+grid(10,10);
 
 
 ///=======div id - color picker ==========////
@@ -59,11 +75,12 @@ function colorPickerButton(grid, setColorsInPicker) {
   });
 }
 function colorPickerGrid() {
-  var color = [['red', 'orange'], ['yellow', 'green'], ['blue', 'purple'] ];
+  var color = [[r,o,y],[g,b,p],[bk,w,ch],[sg,sb,pw]];
+
 
   var twoDimArr = [];
-  var rows = 3;
-  var col = 2;
+  var rows = 4;
+  var col = 3;
   var numbers = 0;
   var colorPicker = document.getElementById('colorPicker');// connecting html and js
   for(var i = 0; i < rows; i++){
@@ -80,13 +97,13 @@ function colorPickerGrid() {
 colorPickerGrid();
 
 //////==========div id = control - erase button =============////
-// var remove = 'white';
+// var remove = w;
 
 var erase_but = document.createElement('button');
-// erase_but.style.background = "white";
+// erase_but.style.background = "w";
 erase_but.appendChild(document.createTextNode('ERASE'));
 erase_but.addEventListener('click', function() {
-    colorSelected = 'white';
+    colorSelected = w;
   });
 
 var remove = document.getElementById('controls');
@@ -97,7 +114,7 @@ remove.appendChild(erase_but);
 
 
 var clear_but = document.createElement('button');
-// clear_but.style.background = "white";
+// clear_but.style.background = "w";
 clear_but.appendChild(document.createTextNode('CLEAR'));
 clear_but.addEventListener('click', function() {
     location.reload();
