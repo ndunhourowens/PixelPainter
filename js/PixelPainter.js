@@ -115,7 +115,7 @@ var save_but = document.createElement('button');
 save_but.appendChild(document.createTextNode('SAVE'));
 save_but.addEventListener('click', function() {
   for(var u = 0; u < twoDimArr.length; u++) {
-    str += twoDimArr[u].id + ':' + twoDimArr[u].style.background;
+    str += twoDimArr[u].id + ':' + twoDimArr[u].style.background + '/';
   }
   window.location.hash = str;
 
@@ -127,7 +127,34 @@ remove.appendChild(save_but);
 var load_but = document.createElement('button');
 load_but.appendChild(document.createTextNode('LOAD'));
 load_but.addEventListener('click', function() {
-  alert('clicked the button');
-  window.location.hash = str;
+  //get the url
+  //pass it through the decoder
+    //have to take the string and change it back into an array
+    //reproduce the array
+    url = window.location.hash.substring(1);
+    var index = endOfChunk = 0;
+    var list = new Array();
+    while (url.length > 1 ) {  // keeping '1' because last '/' will be returned
+      endOfChunk = url.indexOf('/');
+      list.push(url.substring(index, endOfChunk));
+      url = url.substring(endOfChunk + 1);
+    }
+
+    for(var i =0; i < list.length; i++) {
+      var temp = list[i];
+      var index = temp.indexOf(':');
+      var position = temp.substring(0,index);
+      var color = temp.substring(index+1);
+      document.getElementById(position).style.background = color;
+    }
+
+
+
+
 });
 remove.appendChild(load_but);
+
+// var cellInfo = {
+//    id: twoDimArr[u].id,
+//    color: twoDimArr[u].style.background
+// };
